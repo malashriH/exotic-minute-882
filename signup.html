@@ -124,18 +124,24 @@
     let inpEmailMob = document.querySelector(".inpLogin")
     let signInlist = JSON.parse(localStorage.getItem("signIn-list"))||[];
 
-    form.addEventListener("submit", filterby)
+    form.addEventListener("submit", addData);
 
-    function filterby(){
-    signInlist = JSON.parse(localStorage.getItem("signIn-list"));
+   function addData(e){
+    e.preventDefault();
+    signInlist.forEach(element => {
+        if(inpEmailMob.value === ""){
+            alert("Please enter email/mobile")
+        }
+        else {
+           signInlist = signInlist.filter(element => {
+            return inpEmailMob.value == element.email
+           })
 
-    if(inpEmailMob.value == signInlist.email){
-        // signInlist= signInlist.filter((ele) => {
-        // return inpEmailMob.value == ele.email;
-       alert("Sign-In Successful")
-    }else{
-        alert("Wrong email/mobile")
-    }
-  }
+            localStorage.setItem("signIn-list", JSON.stringify(signInlist));
+            addData() 
+            alert("Signed In Successful")
+        }
+    });
+   }
 </script>
 </html>
