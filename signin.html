@@ -135,10 +135,11 @@
 <script>
     let form = document.querySelector(".signinp");
 
-    let tag = document.querySelector(".formLogin")
     let signInlist = JSON.parse(localStorage.getItem("signIn-list"))||[];
 
-form.addEventListener("submit", submitForm);
+    let tag = document.querySelector(".signup > h1")
+
+form.addEventListener("submit", submitForm)
 
 function submitForm(e){
  e.preventDefault();
@@ -156,12 +157,18 @@ function submitForm(e){
         email : emailEl.value,
         password : passwordEl.value,
     }
-
- signInlist.push(formObj)
+    if(nameEl.value == "" || lastnameEl.value == "" ||mobileEl.value == "" ||emailEl.value == "" ||passwordEl.value =="" ){
+    alert("Fill the blanks")
+   }else{
+    signInlist.push(formObj)
 localStorage.setItem("signIn-list", JSON.stringify(signInlist));
+tag.textContent = "Signed In Successfully"
+   }
+ 
 
-// tag.textContent =
+
 }
+
 
 </script>
 </html>
