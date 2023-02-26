@@ -67,7 +67,7 @@
     color: #24155f;
     font-size: 13px;
 }
-.signinp > input{
+.signinp > button{
     margin-bottom: 10px;
     width: 400px;
     height: 40px;
@@ -125,7 +125,8 @@
 
         <p class="policy">By creating this account, you agree to our <a href="#">Privacy Policy</a></p>
 
-        <input type="submit" value="Create an Account" />
+        <!-- <input  type="submit" value="Create an Account" /> -->
+        <button type="button" onclick="signUp()">Create an Account</button>
         </form>
         <div>
             <span class="acc">Have an Account ? <a href="./signup.html" class="links ">Sign In</a></span>
@@ -133,41 +134,34 @@
     </div>
 </body>
 <script>
-    let form = document.querySelector(".signinp");
+    // let form = document.querySelector(".signinp");
 
-    let signInlist = JSON.parse(localStorage.getItem("signIn-list"))||[];
+//     let signInlist = JSON.parse(localStorage.getItem("signIn-list"))||[];
 
-    let tag = document.querySelector(".signup > h1")
+    let tag = document.querySelector(".signup > h1");
 
-form.addEventListener("submit", submitForm)
-
-function submitForm(e){
- e.preventDefault();
-
-    let nameEl = document.querySelector(".name");
-    let lastnameEl = document.querySelector(".lastname");
-    let mobileEl = document.querySelector(".mobile");
-    let emailEl = document.querySelector(".email");
-    let passwordEl = document.querySelector(".password");
-
-    let formObj = {
-        name : nameEl.value,
-        lastname :lastnameEl.value,
-        mobile : mobileEl.value,
-        email : emailEl.value,
-        password : passwordEl.value,
-    }
-    if(nameEl.value == "" || lastnameEl.value == "" ||mobileEl.value == "" ||emailEl.value == "" ||passwordEl.value =="" ){
-    alert("Fill the blanks")
+function signUp(){
+    let nameEl = document.querySelector(".name").value;
+    let lastnameEl = document.querySelector(".lastname").value;
+    let mobileEl = document.querySelector(".mobile").value;
+    let emailEl = document.querySelector(".email").value;
+    let passwordEl = document.querySelector(".password").value;
+    
+    if(nameEl == "" || lastnameEl == "" ||mobileEl == "" ||emailEl == "" ||passwordEl =="" ){
+    alert("Enter your details")
    }else{
-    signInlist.push(formObj)
-localStorage.setItem("signIn-list", JSON.stringify(signInlist));
-tag.textContent = "Signed In Successfully"
+
+    localStorage.setItem("name", nameEl);
+    localStorage.setItem("lastname", lastnameEl);
+    localStorage.setItem("mobile", mobileEl);
+    localStorage.setItem("email", emailEl);
+    localStorage.setItem("password", passwordEl);
+
+     tag.textContent = "Signed In Successfully"
    }
  
-
-
 }
+    
 
 
 </script>
