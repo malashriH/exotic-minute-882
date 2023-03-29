@@ -36,7 +36,7 @@ next.addEventListener("click", () => {
 })
 
 previous.addEventListener("click", () => {
-    imageIndex++;
+    imageIndex--;
     if(imageIndex === -1){
         imageIndex = imageArr.length-1;
     }
